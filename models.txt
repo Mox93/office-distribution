@@ -1,0 +1,45 @@
+import numpy as np
+
+
+class Map(list):
+    def __init__(self, w, h):
+        super(Map, self).__init__()
+        self.w = w
+        self.h = h
+        self.cost = {"#": 999999, "~": 800, "*": 200, "+": 150, "X": 120, "_": 100, "H": 70, "T": 50}
+
+    def add_row(self, row):
+        row2list = [x for x in row[0]]
+        self.append([self.cost[x] for x in row2list])
+
+    def __repr__(self):
+        out_str = ""
+        for row in self:
+            out_str += " ".join([str(x) for x in row]) + "\n"
+
+        return out_str
+
+
+class Custome(list):
+    def __init__(self, prop):
+        super(Custome, self).__init__()
+        self.x = prop[0]
+        self.y = prop[1]
+        self.reward = prop[2]
+        self.extend(prop)
+
+    def __repr__(self):
+        return str([self.x, self.y, self.reward])
+
+
+class Office(list):
+    def __init__(self, x, y):
+        super(Office, self).__init__()
+        self.x = x
+        self.y = y
+        self.extend([x, y])
+
+    def __repr__(self):
+        return str([self.x, self.y])
+
+
